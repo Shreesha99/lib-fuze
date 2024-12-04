@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { Injectable, Component, EventEmitter, Input, Output, ContentChild } from '@angular/core';
+import { Injectable, Component, EventEmitter, Input, Output } from '@angular/core';
 import * as i1 from '@angular/common';
 import { CommonModule } from '@angular/common';
 
@@ -101,61 +101,67 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.0.1", ngImpor
             }] } });
 
 class AccordionComponent {
-    accordionItem;
-    constructor() { }
-    ngAfterContentInit() {
-        console.log(this.accordionItem);
+    /** Number of accordion items */
+    itemCount = 3; // Default to 3 items
+    isOpen = false; // Whether to open each item by default
+    /** Accordion items */
+    accordionItems = [];
+    ngOnChanges(changes) {
+        if (changes['itemCount'] || changes['isOpen']) {
+            this.generateAccordionItems();
+        }
+    }
+    /** Generate items dynamically based on itemCount and isOpen */
+    generateAccordionItems() {
+        this.accordionItems = Array.from({ length: this.itemCount }, (_, index) => ({
+            title: `Item ${index + 1}`,
+            content: `Content for Item ${index + 1}`,
+            isOpen: this.isOpen,
+        }));
+    }
+    /** Toggle the visibility of the accordion item */
+    toggle(item) {
+        item.isOpen = !item.isOpen;
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.0.1", ngImport: i0, type: AccordionComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "19.0.1", type: AccordionComponent, isStandalone: true, selector: "lib-accordion", queries: [{ propertyName: "accordionItem", first: true, predicate: ["accordionItem"], descendants: true }], ngImport: i0, template: `
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "19.0.1", type: AccordionComponent, isStandalone: true, selector: "lib-accordion", inputs: { itemCount: "itemCount", isOpen: "isOpen" }, usesOnChanges: true, ngImport: i0, template: `
     <div class="accordion">
-      <ng-content></ng-content>
+      <div
+        *ngFor="let item of accordionItems; let i = index"
+        class="accordion-item"
+        [class.open]="item.isOpen"
+      >
+        <div class="accordion-header" (click)="toggle(item)">
+          <h5>{{ item.title }}</h5>
+        </div>
+        <div *ngIf="item.isOpen" class="accordion-body">
+          <p>{{ item.content }}</p>
+        </div>
+      </div>
     </div>
-  `, isInline: true, styles: [".accordion{border:1px solid #ddd;border-radius:5px;overflow:hidden}\n"], dependencies: [{ kind: "ngmodule", type: CommonModule }] });
+  `, isInline: true, styles: [".accordion{border-radius:5px;overflow:hidden;font-family:Montserrat,Nunito Sans,Helvetica Neue,Helvetica,Arial,sans-serif}.accordion-item{transition:all .3s ease}.accordion-header{background-color:#dc3e4e;padding:10px;cursor:pointer;font-weight:700;color:#fff;display:flex;justify-content:space-between;align-items:center;font-size:16px;border-radius:.5em}.accordion-header:hover{background-color:#b31c2d}.accordion-body{padding:15px;background-color:#fff;display:none}.accordion-item.open .accordion-body{display:block}.accordion-item h5{margin:0;font-size:1.2rem}.accordion-item.open .accordion-header{background-color:#a81424}\n"], dependencies: [{ kind: "ngmodule", type: CommonModule }, { kind: "directive", type: i1.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "directive", type: i1.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }] });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.0.1", ngImport: i0, type: AccordionComponent, decorators: [{
             type: Component,
             args: [{ selector: 'lib-accordion', standalone: true, imports: [CommonModule], template: `
     <div class="accordion">
-      <ng-content></ng-content>
-    </div>
-  `, styles: [".accordion{border:1px solid #ddd;border-radius:5px;overflow:hidden}\n"] }]
-        }], ctorParameters: () => [], propDecorators: { accordionItem: [{
-                type: ContentChild,
-                args: ['accordionItem']
-            }] } });
-
-class AccordionItemComponent {
-    title = '';
-    isOpen = false;
-    toggle() {
-        this.isOpen = !this.isOpen;
-    }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.0.1", ngImport: i0, type: AccordionItemComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "19.0.1", type: AccordionItemComponent, isStandalone: true, selector: "lib-accordion-item", inputs: { title: "title" }, ngImport: i0, template: `
-    <div class="accordion-item">
-      <div class="accordion-header" (click)="toggle()">
-        <h5>{{ title }}</h5>
-      </div>
-      <div *ngIf="isOpen" class="accordion-body">
-        <ng-content></ng-content>
+      <div
+        *ngFor="let item of accordionItems; let i = index"
+        class="accordion-item"
+        [class.open]="item.isOpen"
+      >
+        <div class="accordion-header" (click)="toggle(item)">
+          <h5>{{ item.title }}</h5>
+        </div>
+        <div *ngIf="item.isOpen" class="accordion-body">
+          <p>{{ item.content }}</p>
+        </div>
       </div>
     </div>
-  `, isInline: true, styles: [".accordion-item{border-bottom:1px solid #ddd}.accordion-header{background-color:#f1f1f1;padding:10px;cursor:pointer}.accordion-body{padding:15px;background-color:#fff}\n"], dependencies: [{ kind: "ngmodule", type: CommonModule }, { kind: "directive", type: i1.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }] });
-}
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.0.1", ngImport: i0, type: AccordionItemComponent, decorators: [{
-            type: Component,
-            args: [{ selector: 'lib-accordion-item', standalone: true, imports: [CommonModule], template: `
-    <div class="accordion-item">
-      <div class="accordion-header" (click)="toggle()">
-        <h5>{{ title }}</h5>
-      </div>
-      <div *ngIf="isOpen" class="accordion-body">
-        <ng-content></ng-content>
-      </div>
-    </div>
-  `, styles: [".accordion-item{border-bottom:1px solid #ddd}.accordion-header{background-color:#f1f1f1;padding:10px;cursor:pointer}.accordion-body{padding:15px;background-color:#fff}\n"] }]
-        }], propDecorators: { title: [{
+  `, styles: [".accordion{border-radius:5px;overflow:hidden;font-family:Montserrat,Nunito Sans,Helvetica Neue,Helvetica,Arial,sans-serif}.accordion-item{transition:all .3s ease}.accordion-header{background-color:#dc3e4e;padding:10px;cursor:pointer;font-weight:700;color:#fff;display:flex;justify-content:space-between;align-items:center;font-size:16px;border-radius:.5em}.accordion-header:hover{background-color:#b31c2d}.accordion-body{padding:15px;background-color:#fff;display:none}.accordion-item.open .accordion-body{display:block}.accordion-item h5{margin:0;font-size:1.2rem}.accordion-item.open .accordion-header{background-color:#a81424}\n"] }]
+        }], propDecorators: { itemCount: [{
+                type: Input
+            }], isOpen: [{
                 type: Input
             }] } });
 
@@ -377,5 +383,5 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.0.1", ngImpor
  * Generated bundle index. Do not edit.
  */
 
-export { AccordionComponent, AccordionItemComponent, AvatarComponent, BreadcrumbComponent, ButtonComponent, DropdownListComponent, FuzeLibComponent, FuzeLibService, TextboxComponent };
+export { AccordionComponent, AvatarComponent, BreadcrumbComponent, ButtonComponent, DropdownListComponent, FuzeLibComponent, FuzeLibService, TextboxComponent };
 //# sourceMappingURL=lib-fuze.mjs.map
