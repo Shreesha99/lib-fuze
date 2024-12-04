@@ -160,34 +160,39 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.0.1", ngImpor
             }] } });
 
 class AvatarComponent {
-    /** URL for the avatar image */
     imageUrl = null;
-    /** Name for alt text and placeholder */
     name = '';
-    /** Avatar size */
-    size = 40; // Default size is 40px
+    size = 40;
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.0.1", ngImport: i0, type: AvatarComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
     static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "19.0.1", type: AvatarComponent, isStandalone: true, selector: "lib-avatar", inputs: { imageUrl: "imageUrl", name: "name", size: "size" }, ngImport: i0, template: `
-    <div
-      class="avatar"
-      [ngStyle]="{ 'width.px': size, 'height.px': size }"
-    >
-      <img *ngIf="imageUrl" [src]="imageUrl" [alt]="name" class="avatar-image" />
-      <span *ngIf="!imageUrl" class="avatar-placeholder">{{ name.charAt(0) }}</span>
+    <div class="avatar" [ngStyle]="{ 'width.px': size, 'height.px': size }">
+      <img
+        *ngIf="imageUrl"
+        [src]="imageUrl"
+        [alt]="name"
+        class="avatar-image"
+      />
+      <span *ngIf="!imageUrl" class="avatar-placeholder">{{
+        name.charAt(0)
+      }}</span>
     </div>
-  `, isInline: true, styles: [".avatar{display:flex;justify-content:center;align-items:center;border-radius:50%;overflow:hidden;background-color:#f0f0f0;border:2px solid #ccc}.avatar-image{width:100%;height:100%;object-fit:cover}.avatar-placeholder{font-size:1.5em;color:#fff;background-color:#007bff;width:100%;height:100%;display:flex;justify-content:center;align-items:center}\n"], dependencies: [{ kind: "ngmodule", type: CommonModule }, { kind: "directive", type: i1.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i1.NgStyle, selector: "[ngStyle]", inputs: ["ngStyle"] }] });
+  `, isInline: true, styles: [".avatar{display:flex;justify-content:center;align-items:center;border-radius:50%;overflow:hidden;background-color:#f8f9fa;border:2px solid #dc3e4e;box-shadow:0 2px 4px #0000001a;font-family:Montserrat,Nunito Sans,Helvetica Neue,Helvetica,Arial,sans-serif}.avatar-image{width:100%;height:100%;object-fit:cover;border-radius:50%}.avatar-placeholder{width:100%;height:100%;display:flex;justify-content:center;align-items:center;font-size:1.5em;color:#fff;background-color:#dc3e4e;font-weight:700;text-transform:uppercase}\n"], dependencies: [{ kind: "ngmodule", type: CommonModule }, { kind: "directive", type: i1.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i1.NgStyle, selector: "[ngStyle]", inputs: ["ngStyle"] }] });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.0.1", ngImport: i0, type: AvatarComponent, decorators: [{
             type: Component,
             args: [{ selector: 'lib-avatar', standalone: true, imports: [CommonModule], template: `
-    <div
-      class="avatar"
-      [ngStyle]="{ 'width.px': size, 'height.px': size }"
-    >
-      <img *ngIf="imageUrl" [src]="imageUrl" [alt]="name" class="avatar-image" />
-      <span *ngIf="!imageUrl" class="avatar-placeholder">{{ name.charAt(0) }}</span>
+    <div class="avatar" [ngStyle]="{ 'width.px': size, 'height.px': size }">
+      <img
+        *ngIf="imageUrl"
+        [src]="imageUrl"
+        [alt]="name"
+        class="avatar-image"
+      />
+      <span *ngIf="!imageUrl" class="avatar-placeholder">{{
+        name.charAt(0)
+      }}</span>
     </div>
-  `, styles: [".avatar{display:flex;justify-content:center;align-items:center;border-radius:50%;overflow:hidden;background-color:#f0f0f0;border:2px solid #ccc}.avatar-image{width:100%;height:100%;object-fit:cover}.avatar-placeholder{font-size:1.5em;color:#fff;background-color:#007bff;width:100%;height:100%;display:flex;justify-content:center;align-items:center}\n"] }]
+  `, styles: [".avatar{display:flex;justify-content:center;align-items:center;border-radius:50%;overflow:hidden;background-color:#f8f9fa;border:2px solid #dc3e4e;box-shadow:0 2px 4px #0000001a;font-family:Montserrat,Nunito Sans,Helvetica Neue,Helvetica,Arial,sans-serif}.avatar-image{width:100%;height:100%;object-fit:cover;border-radius:50%}.avatar-placeholder{width:100%;height:100%;display:flex;justify-content:center;align-items:center;font-size:1.5em;color:#fff;background-color:#dc3e4e;font-weight:700;text-transform:uppercase}\n"] }]
         }], propDecorators: { imageUrl: [{
                 type: Input
             }], name: [{
@@ -203,26 +208,32 @@ class BreadcrumbComponent {
     static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "19.0.1", type: BreadcrumbComponent, isStandalone: true, selector: "lib-breadcrumb", inputs: { items: "items" }, ngImport: i0, template: `
     <nav>
       <ol class="breadcrumb">
-        <li *ngFor="let item of items; let last = last" [ngClass]="{ 'active': last }">
+        <li
+          *ngFor="let item of items; let last = last"
+          [ngClass]="{ active: last }"
+        >
           <a *ngIf="!last" [href]="item.link">{{ item.label }}</a>
           <span *ngIf="last">{{ item.label }}</span>
         </li>
       </ol>
     </nav>
-  `, isInline: true, styles: [".breadcrumb{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap}.breadcrumb li{margin:0;padding:0;font-size:14px;display:flex;align-items:center}.breadcrumb li a{color:#007bff;text-decoration:none}.breadcrumb li a:hover{text-decoration:underline}.breadcrumb li.active{color:#6c757d}.breadcrumb li+li:before{content:\"/\";margin:0 8px;color:#6c757d}\n"], dependencies: [{ kind: "ngmodule", type: CommonModule }, { kind: "directive", type: i1.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { kind: "directive", type: i1.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "directive", type: i1.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }] });
+  `, isInline: true, styles: ["nav{font-family:Montserrat,Nunito Sans,Helvetica Neue,Helvetica,Arial,sans-serif;background-color:#f8f9fa;padding:.5rem 1rem;border-radius:.5em;box-shadow:0 2px 4px #0000001a}.breadcrumb{display:flex;align-items:center;gap:8px;margin:0;padding:0;list-style:none}.breadcrumb li{font-size:14px;color:#333;font-weight:700}.breadcrumb li a{text-decoration:none;color:#dc3e4e;transition:color .2s ease}.breadcrumb li a:hover{color:#b31c2d}.breadcrumb li.active{color:#6c757d;font-weight:700}.breadcrumb li:after{content:\"/\";color:#6c757d;margin:0 8px}.breadcrumb li:last-child:after{content:\"\"}\n"], dependencies: [{ kind: "ngmodule", type: CommonModule }, { kind: "directive", type: i1.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { kind: "directive", type: i1.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "directive", type: i1.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }] });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.0.1", ngImport: i0, type: BreadcrumbComponent, decorators: [{
             type: Component,
             args: [{ selector: 'lib-breadcrumb', standalone: true, imports: [CommonModule], template: `
     <nav>
       <ol class="breadcrumb">
-        <li *ngFor="let item of items; let last = last" [ngClass]="{ 'active': last }">
+        <li
+          *ngFor="let item of items; let last = last"
+          [ngClass]="{ active: last }"
+        >
           <a *ngIf="!last" [href]="item.link">{{ item.label }}</a>
           <span *ngIf="last">{{ item.label }}</span>
         </li>
       </ol>
     </nav>
-  `, styles: [".breadcrumb{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap}.breadcrumb li{margin:0;padding:0;font-size:14px;display:flex;align-items:center}.breadcrumb li a{color:#007bff;text-decoration:none}.breadcrumb li a:hover{text-decoration:underline}.breadcrumb li.active{color:#6c757d}.breadcrumb li+li:before{content:\"/\";margin:0 8px;color:#6c757d}\n"] }]
+  `, styles: ["nav{font-family:Montserrat,Nunito Sans,Helvetica Neue,Helvetica,Arial,sans-serif;background-color:#f8f9fa;padding:.5rem 1rem;border-radius:.5em;box-shadow:0 2px 4px #0000001a}.breadcrumb{display:flex;align-items:center;gap:8px;margin:0;padding:0;list-style:none}.breadcrumb li{font-size:14px;color:#333;font-weight:700}.breadcrumb li a{text-decoration:none;color:#dc3e4e;transition:color .2s ease}.breadcrumb li a:hover{color:#b31c2d}.breadcrumb li.active{color:#6c757d;font-weight:700}.breadcrumb li:after{content:\"/\";color:#6c757d;margin:0 8px}.breadcrumb li:last-child:after{content:\"\"}\n"] }]
         }], propDecorators: { items: [{
                 type: Input
             }] } });
