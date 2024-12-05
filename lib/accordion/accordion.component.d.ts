@@ -1,4 +1,5 @@
 import { OnChanges, SimpleChanges } from '@angular/core';
+import { OnChanges, SimpleChanges } from '@angular/core';
 import * as i0 from "@angular/core";
 interface AccordionItem {
     title: string;
@@ -24,4 +25,5 @@ export declare class AccordionComponent implements OnChanges {
     static ɵfac: i0.ɵɵFactoryDeclaration<AccordionComponent, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<AccordionComponent, "lib-accordion", never, { "itemCount": { "alias": "itemCount"; "required": false; }; "backgroundColor": { "alias": "backgroundColor"; "required": false; }; "accordionBorderRadius": { "alias": "accordionBorderRadius"; "required": false; }; "itemBorderRadius": { "alias": "itemBorderRadius"; "required": false; }; "width": { "alias": "width"; "required": false; }; "accordionHeight": { "alias": "accordionHeight"; "required": false; }; "itemHeight": { "alias": "itemHeight"; "required": false; }; "itemGap": { "alias": "itemGap"; "required": false; }; "isOpen": { "alias": "isOpen"; "required": false; }; }, {}, never, never, true, never>;
 }
+export {};
 export {};

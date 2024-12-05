@@ -1,5 +1,6 @@
 import * as i0 from '@angular/core';
 import { Injectable, Component, EventEmitter, Input, Output } from '@angular/core';
+import { Injectable, Component, EventEmitter, Input, Output } from '@angular/core';
 import * as i1 from '@angular/common';
 import { CommonModule } from '@angular/common';
 
@@ -372,5 +373,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.0.1", ngImpor
  * Generated bundle index. Do not edit.
  */
 
+export { AccordionComponent, AvatarComponent, BreadcrumbComponent, ButtonComponent, DropdownListComponent, FuzeLibComponent, FuzeLibService, TextboxComponent };
 export { AccordionComponent, AvatarComponent, BreadcrumbComponent, ButtonComponent, DropdownListComponent, FuzeLibComponent, FuzeLibService, TextboxComponent };
 //# sourceMappingURL=lib-fuze.mjs.map
