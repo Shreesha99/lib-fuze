@@ -390,6 +390,54 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.0.1", ngImpor
                 type: Output
             }] } });
 
+class TextareaComponent {
+    backgroundColor = '#ffffff'; // Default white
+    borderRadius = '5px'; // Default 5px
+    width = '100%'; // Default 100%
+    height = '100px'; // Default 100px
+    placeholder = 'Enter your text here...'; // Placeholder text
+    maxLength = 500; // Maximum character limit
+    resizable = true; // Allow resizing
+    textAlign = 'left'; // Text alignment
+    showCharCount = true; // Show character count
+    textContent = ''; // User input content
+    /** Detect changes in input properties */
+    ngOnChanges(changes) {
+        if (changes['maxLength'] && this.textContent.length > this.maxLength) {
+            this.textContent = this.textContent.substring(0, this.maxLength);
+        }
+    }
+    /** Handle text input */
+    onTextInput(event) {
+        const target = event.target;
+        this.textContent = target.value;
+    }
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.0.1", ngImport: i0, type: TextareaComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "19.0.1", type: TextareaComponent, isStandalone: true, selector: "lib-textarea", inputs: { backgroundColor: "backgroundColor", borderRadius: "borderRadius", width: "width", height: "height", placeholder: "placeholder", maxLength: "maxLength", resizable: "resizable", textAlign: "textAlign", showCharCount: "showCharCount" }, usesOnChanges: true, ngImport: i0, template: "<div class=\"textarea-wrapper\" [style.width]=\"width\">\r\n    <textarea\r\n      class=\"textarea\"\r\n      [ngStyle]=\"{\r\n        backgroundColor: backgroundColor,\r\n        borderRadius: borderRadius,\r\n        height: height,\r\n        textAlign: textAlign,\r\n        resize: resizable ? 'both' : 'none'\r\n      }\"\r\n      [placeholder]=\"placeholder\"\r\n      maxlength=\"maxLength\"\r\n      (input)=\"onTextInput($event)\"\r\n    ></textarea>\r\n    <div *ngIf=\"showCharCount\" class=\"char-count\">\r\n      {{ textContent.length }}/{{ maxLength }}\r\n    </div>\r\n  </div>\r\n  ", styles: [".textarea-wrapper{display:flex;flex-direction:column;gap:5px;font-family:Montserrat,Nunito Sans,Helvetica Neue,Helvetica,Arial,sans-serif}.textarea{width:100%;padding:10px;font-family:inherit;font-size:14px;color:#000;background-color:#dc3e4e;border:1px solid #ddd;border-radius:5px;outline:none;transition:all .3s ease-in-out;resize:vertical;box-shadow:0 2px 4px #0000001a;text-align:left}.textarea:focus{border-color:#dc3e4e;box-shadow:0 0 5px #dc3e4e}.textarea::placeholder{color:#000;opacity:.7}.char-count{font-size:12px;color:#000;text-align:right}\n"], dependencies: [{ kind: "ngmodule", type: CommonModule }, { kind: "directive", type: i1.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i1.NgStyle, selector: "[ngStyle]", inputs: ["ngStyle"] }] });
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.0.1", ngImport: i0, type: TextareaComponent, decorators: [{
+            type: Component,
+            args: [{ selector: 'lib-textarea', standalone: true, imports: [CommonModule], template: "<div class=\"textarea-wrapper\" [style.width]=\"width\">\r\n    <textarea\r\n      class=\"textarea\"\r\n      [ngStyle]=\"{\r\n        backgroundColor: backgroundColor,\r\n        borderRadius: borderRadius,\r\n        height: height,\r\n        textAlign: textAlign,\r\n        resize: resizable ? 'both' : 'none'\r\n      }\"\r\n      [placeholder]=\"placeholder\"\r\n      maxlength=\"maxLength\"\r\n      (input)=\"onTextInput($event)\"\r\n    ></textarea>\r\n    <div *ngIf=\"showCharCount\" class=\"char-count\">\r\n      {{ textContent.length }}/{{ maxLength }}\r\n    </div>\r\n  </div>\r\n  ", styles: [".textarea-wrapper{display:flex;flex-direction:column;gap:5px;font-family:Montserrat,Nunito Sans,Helvetica Neue,Helvetica,Arial,sans-serif}.textarea{width:100%;padding:10px;font-family:inherit;font-size:14px;color:#000;background-color:#dc3e4e;border:1px solid #ddd;border-radius:5px;outline:none;transition:all .3s ease-in-out;resize:vertical;box-shadow:0 2px 4px #0000001a;text-align:left}.textarea:focus{border-color:#dc3e4e;box-shadow:0 0 5px #dc3e4e}.textarea::placeholder{color:#000;opacity:.7}.char-count{font-size:12px;color:#000;text-align:right}\n"] }]
+        }], propDecorators: { backgroundColor: [{
+                type: Input
+            }], borderRadius: [{
+                type: Input
+            }], width: [{
+                type: Input
+            }], height: [{
+                type: Input
+            }], placeholder: [{
+                type: Input
+            }], maxLength: [{
+                type: Input
+            }], resizable: [{
+                type: Input
+            }], textAlign: [{
+                type: Input
+            }], showCharCount: [{
+                type: Input
+            }] } });
+
 /*
  * Public API Surface of fuze-lib
  */
@@ -398,5 +446,5 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.0.1", ngImpor
  * Generated bundle index. Do not edit.
  */
 
-export { AccordionComponent, AvatarComponent, BreadcrumbComponent, ButtonComponent, DropdownListComponent, FuzeLibComponent, FuzeLibService, TextboxComponent };
+export { AccordionComponent, AvatarComponent, BreadcrumbComponent, ButtonComponent, DropdownListComponent, FuzeLibComponent, FuzeLibService, TextareaComponent, TextboxComponent };
 //# sourceMappingURL=lib-fuze.mjs.map

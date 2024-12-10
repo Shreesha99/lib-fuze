@@ -6,3 +6,4 @@ export * from './lib/avatar/avatar.component';
 export * from './lib/breadcrumb/breadcrumb.component';
 export * from './lib/dropdown-list/dropdown-list.component';
 export * from './lib/textbox/textbox.component';
+export * from './lib/textarea/textarea.component';
